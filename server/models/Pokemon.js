@@ -18,11 +18,11 @@ const pokeSchema = new Schema({
     },
     type: {
         type: [String],
-        validate: [typeLimit, "{PATH} exceeds the limit of 2 types per pokemon"]
+        validate: [typeLimit, "Exceeds the limit of 2 types per pokemon"]
     },
     moves: {
         type: [moveSchema],
-        validate: [moveLimit, "{PATH} exceeds the limit of 4 moves per pokemon"]
+        validate: [moveLimit, "Exceeds the limit of 4 moves per pokemon"]
     }
 });
 

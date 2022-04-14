@@ -12,7 +12,7 @@ const teamSchema = new Schema({
     },
     pokemon: {
         type: [Pokemon],
-        validate: [arrayLimit, "{PATH} exceeds the limit of 6 pokemon per team"]
+        validate: [arrayLimit, "Exceeds the limit of 6 pokemon per team"]
     }
 });
 
