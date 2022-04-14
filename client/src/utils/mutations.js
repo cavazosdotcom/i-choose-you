@@ -23,3 +23,33 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const SAVE_POKEMON = gql`
+  mutation savePokemon ($pokemonData: PokemonInput!) {
+    savePokemon(pokemonData: $pokemonData) {
+    _id
+    name
+    type
+    savedPokemons {
+    height
+    origin
+    weakness
+    }
+    }
+  }
+`;
+
+export const REMOVE_POKEMON = gql`
+  mutation removePokemon ($pokemonData: PokemonInput!) {
+    removePokemon(pokemonData: $pokemonData) {
+    _id
+    name
+    type
+    savedPokemons {
+    height
+    origin
+    weakness
+    }
+    }
+  }
+`;
