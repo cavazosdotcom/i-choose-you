@@ -10,8 +10,15 @@ const teamSchema = new Schema({
         type: String,
         required: true
     },
-    pokemon: [Pokemon]
+    pokemon: {
+        type: [Pokemon],
+        validate: [arrayLimit, "{PATH} exceeds the limit of 6 pokemon per team"]
+    }
 });
+
+function arrayLimit(array){
+    return array.length <= 6;
+}
 
 const Team = model("Team", teamSchema);
 

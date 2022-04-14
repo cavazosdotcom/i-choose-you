@@ -16,9 +16,16 @@ const pokeSchema = new Schema({
         type: String,
         required: true
     },
-    type: [String],
+    type: {
+        type: [String],
+        validate: [arrayLimit, "{PATH} exceeds the limit of 4 moves per pokemon"]
+    },
     moves: [moveSchema]
 });
+
+function arrayLimit(array){
+    return array.length <= 4;
+}
 
 const Pokemon = model("Pokemon", pokeSchema);
 
