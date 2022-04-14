@@ -34,6 +34,4 @@ function typeLimit(types){
     return types.length <= 2;
 }
 
-const Pokemon = model("Pokemon", pokeSchema);
-
-module.exports = Pokemon;
+module.exports = pokeSchema;

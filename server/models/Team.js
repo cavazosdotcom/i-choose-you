@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const Pokemon = require('./Pokemon');
+const pokemonSchema = require('./Pokemon');
 
 const teamSchema = new Schema({
     name: {
@@ -11,7 +11,9 @@ const teamSchema = new Schema({
         required: true
     },
     pokemon: {
-        type: [Pokemon],
+        type: [{
+            type: pokemonSchema
+        }],
         validate: [arrayLimit, "Exceeds the limit of 6 pokemon per team"]
     }
 });
@@ -20,6 +22,4 @@ function arrayLimit(array){
     return array.length <= 6;
 }
 
-const Team = model("Team", teamSchema);
-
-module.exports = Team;
+module.exports = teamSchema;
