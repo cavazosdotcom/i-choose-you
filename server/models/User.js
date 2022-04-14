@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const Team = require("./Team");
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
@@ -18,7 +19,8 @@ const userSchema = new Schema({
     type: String,
     required: true,
     minlength: 5,
-  }
+  },
+  teams: [Team]
 });
 
 userSchema.pre('save', async function (next) {
