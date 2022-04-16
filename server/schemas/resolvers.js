@@ -56,6 +56,18 @@ const resolvers = {
         user.save()
         return user.toJSON();
       }
+    },
+    addPokemon: async (parent, args, context) =>{
+      if(context.user) {
+        const user = await User.findOne({ _id: context.user._id });
+        user.teams.map((team) => {
+          if(args.teamName === team.teamName) {
+            team.pokemon.push(args.pokemon)
+          }
+        })
+        user.save();
+        return user.toJSON();
+      }
     }
   }
 };
