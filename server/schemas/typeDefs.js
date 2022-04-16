@@ -13,7 +13,7 @@ const typeDefs = gql`
   }
 
   type Team {
-    name: String
+    teamName: String
     game: String
     pokemon: [Pokemon]
   }
