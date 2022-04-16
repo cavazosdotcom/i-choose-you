@@ -1,22 +1,22 @@
 const { Schema, model } = require('mongoose');
 
 const moveSchema = new Schema({
-    name: {
+    moveName: {
         type: String,
         required: true
     },
-    type: {
+    moveType: {
         type: String,
         required: true
     }
 });
 
 const pokeSchema = new Schema({
-    name: {
+    pokeName: {
         type: String,
         required: true
     },
-    type: {
+    typeList: {
         type: [String],
         validate: [typeLimit, "Exceeds the limit of 2 types per pokemon"]
     },

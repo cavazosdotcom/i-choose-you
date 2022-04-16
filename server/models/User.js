@@ -20,7 +20,7 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  teams: [teamSchema]
+  teamList: [teamSchema]
 });
 
 userSchema.pre('save', async function (next) {
