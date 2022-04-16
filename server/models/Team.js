@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 const pokemonSchema = require('./Pokemon');
 
 const teamSchema = new Schema({
-    name: {
+    teamName: {
         type: String,
         required: true,
         unique: true
@@ -11,7 +11,7 @@ const teamSchema = new Schema({
         type: String,
         required: true
     },
-    pokemon: [{
+    pokemonList: [{
         type: pokemonSchema,
         validate: [arrayLimit, "Exceeds the limit of 6 pokemon per team"]
     }]
