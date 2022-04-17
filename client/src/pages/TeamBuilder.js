@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import SearchForm from "../components/SearchForm/index"
 import PokemonList from "../components/Pokemon/PokemonList";
 import API from "../utils/API";
+import PokemonCard from "../components/PokemonCard";
 // import Pokedex from "pokedex-promise-v2";
 
 function  TeamBuilder() {
@@ -49,8 +50,10 @@ function  TeamBuilder() {
     return (
         <>
         <SearchForm onFormSubmit={searchPokemon} />
-        {(isLoading) ? <div>loading...</div> : <PokemonList pokemon={pokemon} />}
+        {/* {(isLoading) ? <div>loading...</div> : <PokemonList pokemon={pokemon} />} */}
         {/* {<PokemonList pokemon={pokemon} />} */}
+        {(isLoading) ? <div>loading...</div> : <PokemonCard pokemon={pokemon}/>}
+        
     </>
     
     );
