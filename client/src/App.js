@@ -17,6 +17,8 @@ import TeamBuilder from './pages/TeamBuilder';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
+// import NavBar from './components/NavBar';
+
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',
