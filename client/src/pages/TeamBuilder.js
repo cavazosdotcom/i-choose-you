@@ -52,7 +52,7 @@ import axios from "axios";
 const TeamBuilder = () => {
     
     const [pokemon, setPokemon] = useState(null)
-    const [pokemonData, setPokemonData] = useState(null)
+    // const [pokemonData, setPokemonData] = useState(null)
     const [isLoading, setLoading] = useState(true)
    
 
@@ -60,9 +60,10 @@ const TeamBuilder = () => {
     useEffect(() => {
         // calls pokemon fetch "search" method from API folder,
         const getPokemon = async () => {
-            const res = await API.search()
+            const res = await API.search("pokedex/kanto")
             // sets "pokemon" state to the response results
-            setPokemon(res.data.results)
+            console.log(res.data);
+            setPokemon(res.data.pokemon_entries)
             
             // need a different method to call fetch for each pokemon to retrieve data
             // pokemon.map((p) => getPokemonData(p))
@@ -71,15 +72,15 @@ const TeamBuilder = () => {
     }, [])
 
     // accepts the result from getPokemon() 
-    const getPokemonData = async (resultPokemon) => {
-        // takes url from resultPokemon
-        let url = resultPokemon.url
-        // fetch with url
-        const res = await axios.get(url)
+    // const getPokemonData = async (resultPokemon) => {
+    //     // takes url from resultPokemon
+    //     let url = resultPokemon.url
+    //     // fetch with url
+    //     const res = await axios.get(url)
 
-        // update pokemonData state to recieved pokemon data, only works with one pokemon at a time at the moment, need to iterate over resultPokemon array
-        setPokemonData(res.data)
-    }
+    //     // update pokemonData state to recieved pokemon data, only works with one pokemon at a time at the moment, need to iterate over resultPokemon array
+    //     setPokemonData(res.data)
+    // }
 
 
     useEffect(() => {
@@ -90,9 +91,9 @@ const TeamBuilder = () => {
     // console.log(pokemonData)
     
     return (
-        <>
-        {(isLoading) ? <div>loading...</div> : console.log(pokemonData)}
-        </>
+        <div style={{display: "flex", flexWrap: "wrap"}}>
+        {(isLoading) ? <div>loading...</div> : pokemon.map(poke => <PokemonCard pokemon={poke.pokemon_species} />)}
+        </div>
         )
         
 }
