@@ -48,6 +48,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     addTeam(teamName: String, game: String, pokemonList: [PokeInput]): User
     addPokemon(teamName: String!, pokeName: String!, typeList: [String]): User
+    removeTeam(teamName: String!): User
     removePokemon(teamName: String!, pokeName: String!): User
     login(email: String!, password: String!): Auth
   }
