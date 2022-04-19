@@ -3,60 +3,97 @@ import SearchForm from "../components/SearchForm/index"
 import PokemonList from "../components/Pokemon/PokemonList";
 import API from "../utils/API";
 import PokemonCard from "../components/PokemonCard";
-// import Pokedex from "pokedex-promise-v2";
+import axios from "axios";
 
-function  TeamBuilder() {
+// First TeamBuilder Function, has a search so we can search for pokemon and retrieve data for that specific pokemon 
 
-    // // needed for Pokedex package
+// function  TeamBuilder() {
+
+//     // axios method, pokemon and loading data
+//     const [pokemon, setPokemon] = useState(null)
+//     const [isLoading, setLoading] = useState(true)
+
+//     // searchPokemon function, using axios, search pokemon based on query and return pokemon data
+//     // loading is false once data is fetched
+//     const searchPokemon = async (query) => {
+//         const res = await API.searchData(query)
+//         setPokemon(res.data)
+//         // setLoading(false)
+//     }
+
+//     // search for pikachu on page load 
+//     useEffect(() => {
+//         searchPokemon('pikachu')
+//     }, []);
+
+//     // sets loading to change when pokemon changes
+//     useEffect(() => {
+//         setLoading(!pokemon) 
+//       }, [pokemon])
     
-    // const P = new Pokedex();
-    // // async function to fetch pokemon data from API, using promise based cb function from npm package
-    // (async () => { // with Async/Await
-    //     try {
-    //         const golduck = await P.getPokemonSpeciesByName("froakie")
-    //         // const frenchName = golduckSpecies.names.filter(pokeAPIName => pokeAPIName.language.name === 'fr')[0].name
-    //         console.log(golduck)
-    //     } catch (error) {
-    //         throw error
-    //     }
-    // })()
+//       console.log(pokemon)  
 
-    // axios method, pokemon and loading data
+
+//     // change loading to gif
+//     return (
+//         <>
+//         <SearchForm onFormSubmit={searchPokemon} />
+//         {(isLoading) ? <div>loading...</div> : <PokemonCard pokemon={pokemon}/>}
+        
+//     </>
+    
+//     );
+//     }
+
+// export default TeamBuilder;
+
+
+// building version with both fetches to retrieve on page load
+const TeamBuilder = () => {
+    
     const [pokemon, setPokemon] = useState(null)
+    const [pokemonData, setPokemonData] = useState(null)
     const [isLoading, setLoading] = useState(true)
+   
 
-    // searchPokemon function, using axios, search pokemon based on query and return pokemon data
-    // loading is false once data is fetched
-    const searchPokemon = async (query) => {
-        const res = await API.search(query)
-        setPokemon(res.data)
-        // setLoading(false)
+    // update to run getPokemonData with useState
+    useEffect(() => {
+        // calls pokemon fetch "search" method from API folder,
+        const getPokemon = async () => {
+            const res = await API.search()
+            // sets "pokemon" state to the response results
+            setPokemon(res.data.results)
+            
+            // need a different method to call fetch for each pokemon to retrieve data
+            // pokemon.map((p) => getPokemonData(p))
+        }
+        getPokemon();
+    }, [])
+
+    // accepts the result from getPokemon() 
+    const getPokemonData = async (resultPokemon) => {
+        // takes url from resultPokemon
+        let url = resultPokemon.url
+        // fetch with url
+        const res = await axios.get(url)
+
+        // update pokemonData state to recieved pokemon data, only works with one pokemon at a time at the moment, need to iterate over resultPokemon array
+        setPokemonData(res.data)
     }
 
-    // search for pikachu on page load 
-    useEffect(() => {
-        searchPokemon('pikachu')
-    }, []);
 
-    // sets loading to change when pokemon changes
     useEffect(() => {
         setLoading(!pokemon) 
-      }, [pokemon])
+    }, [pokemon])
+
+    console.log(pokemon)
+    // console.log(pokemonData)
     
-      console.log(pokemon)  
-
-
-    // change loading to gif
     return (
         <>
-        <SearchForm onFormSubmit={searchPokemon} />
-        {/* {(isLoading) ? <div>loading...</div> : <PokemonList pokemon={pokemon} />} */}
-        {/* {<PokemonList pokemon={pokemon} />} */}
-        {(isLoading) ? <div>loading...</div> : <PokemonCard pokemon={pokemon}/>}
+        {(isLoading) ? <div>loading...</div> : console.log(pokemonData)}
+        </>
+        )
         
-    </>
-    
-    );
-    }
-
+}
 export default TeamBuilder;

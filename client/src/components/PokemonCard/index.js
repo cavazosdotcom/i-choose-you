@@ -2,8 +2,7 @@ import React from 'react';
 import "./index.css"
 // import { Link } from 'react-router-dom';
 
-const PokemonCard = ({ pokemon }) => {
-
+const PokemonCard = ({pokemon}) => {
 
     return (
         <div className="card g-3 m-2 round bg-light shadow border-0">
