@@ -10,11 +10,11 @@ function PokemonList({ pokemon }) {
             <p>{pokemon.moves[0].move.name}</p>
             <img src={pokemon.sprites.front_default} alt={pokemon.name}></img>
             <img src={pokemon.sprites.versions["generation-vii"]["ultra-sun-ultra-moon"].front_default} alt={pokemon.name}></img>
-            <ul>
+            {/* <ul>
                 {pokemon.moves.map((p) => {
                    return <li key={p.move.name}>{p.move.name}</li>
                 })}
-            </ul>
+            </ul> */}
         </div>
     )
 }
