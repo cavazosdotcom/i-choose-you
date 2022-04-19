@@ -82,6 +82,13 @@ const resolvers = {
         return user.toJSON();
       }
       throw new AuthenticationError('You need to be logged in!');  
+    },
+    removeTeam: async (parent, args, context) => {
+      if(context.user) {
+        const user = await User.findOne({_id: context.user._id});
+        const i = user.teamList.findIndex((team) => team === args.teamName);
+        user.teamList.splice(i, 1);
+      }
     }
   }
 };
