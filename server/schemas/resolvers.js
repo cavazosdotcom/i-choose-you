@@ -1,4 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
+const { default: axios } = require('axios');
 const { User } = require('../models');
 const { signToken } = require('../utils/auth');
 
@@ -23,6 +24,11 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    // if we decide to add any graphql search integration
+    searchPokemon: async (parent, args) => {
+      const res = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=20`)
+        return res.data
+    }
   },
 
   Mutation: {
