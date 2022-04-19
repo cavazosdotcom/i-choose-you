@@ -83,6 +83,9 @@ const resolvers = {
         user.teamList.map((team) => {
           if(args.teamName === team.teamName) {
             const i = team.pokemonList.findIndex((pokemon) => pokemon.pokeName === args.pokeName);
+            if(i === -1){
+              throw new ValidationError(`Could not find ${args.pokeName} on ${args.teamName}`);
+            }
             team.pokemonList.splice(i, 1);
           }
         })
