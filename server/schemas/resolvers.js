@@ -96,13 +96,22 @@ const resolvers = {
         user.teamList.map((team) => {
           if(args.teamName === team.teamName) {
             const i = team.pokemonList.findIndex((pokemon) => pokemon.pokeName === args.pokeName);
-            team.pokemonList.splice(i, 1);
+            team.pokemonList.splice(i);
           }
         })
         user.save();
         return user.toJSON();
       }
       throw new AuthenticationError('You need to be logged in!');  
+    },
+    removeTeam: async (parent, args, context) => {
+      if(context.user) {
+        const user = await User.findOne({_id: context.user._id});
+        const i = user.teamList.findIndex((team) => team === args.teamName);
+        user.teamList.splice(i, 1);
+        user.save();
+        return user.toJSON();
+      }
     }
   }
 };
