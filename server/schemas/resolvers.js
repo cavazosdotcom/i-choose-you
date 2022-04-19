@@ -10,10 +10,10 @@ const resolvers = {
     user: async (parent, { username }) => {
       return User.findOne({ username });
     },
-    teams: async (parent, args, context) => {
+    teamList: async (parent, args, context) => {
       if (context.user) {
         const user = User.findOne({ _id: context.user._id });
-        return user.teams;
+        return user.teamList;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -52,7 +52,7 @@ const resolvers = {
       if(context.user){
         const user = await User.findOne({ _id: context.user._id });
         console.log(args);
-        user.teams.push(args);
+        user.teamList.push(args);
         user.save()
         return user.toJSON();
       }
@@ -60,11 +60,35 @@ const resolvers = {
     addPokemon: async (parent, args, context) =>{
       if(context.user) {
         const user = await User.findOne({ _id: context.user._id });
-        user.teams.map((team) => {
+        user.teamList.map((team) => {
           if(args.teamName === team.teamName) {
-            team.pokemon.push(args.pokemon)
+            team.pokemonList.push({pokeName: args.pokeName, typeList: args.typeList});
           }
         })
+        user.save();
+        return user.toJSON();
+      }
+    },
+    removePokemon: async (parent, args, context) => {
+      if(context.user) {
+        const user = await User.findOne({ _id: context.user._id });
+        user.teamList.map((team) => {
+          if(args.teamName === team.teamName) {
+            const i = team.pokemonList.findIndex((pokemon) => pokemon.pokeName === args.pokeName);
+            team.pokemonList.splice(i);
+          }
+        })
+        user.save();
+        return user.toJSON();
+      }
+      throw new AuthenticationError('You need to be logged in!');  
+    },
+    removeTeam: async (parent, args, context) => {
+      if(context.user) {
+        const user = await User.findOne({_id: context.user._id});
+        const i = user.teamList.findIndex((team) => team === args.teamName);
+        user.teamList.splice(i, 1);
+
         user.save();
         return user.toJSON();
       }
