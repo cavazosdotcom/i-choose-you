@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const search = async (query) =>
-   axios.get(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=20`);
+   axios.get(`https://pokeapi.co/api/v2/${query}`);
 
 // search for first TeamBuilder version, need to export searchData with use
 // const searchData = async (query) =>
