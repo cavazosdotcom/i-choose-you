@@ -30,10 +30,19 @@ const PokemonCard = ({pokemon}) => {
                 
         //     </div>
         // </div>
-        <div style={{border: "3px solid black", borderRadius: "10px", margin: "1rem", padding: "1rem"}}>
-            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${dexNumber}.png`} alt={`A small sprite of ${pokemon.name}`}/>
-            {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+        <>
+        <div className="card border-3 border-dark shadow" id={dexNumber}>
+            <div className="d-inline-flex">
+                <div className="card-body bg-danger text-white text-center wide">
+                    <p>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</p>
+                    <div className="btn btn-primary">+</div>
+                </div>
+                <div className="card-body p-0">
+                    <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${dexNumber}.png`} className="wide" alt={`A small sprite of ${pokemon.name}`}/>
+                </div>
+            </div>
         </div>
+        </>
     )
 }
 
