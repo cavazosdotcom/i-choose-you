@@ -8,12 +8,12 @@ const teamSchema = new Schema({
     },
     game: {
         type: String,
+        default: "red-blue",
         required: true
     },
-    pokemon: {
-        type: [{
-            type: pokemonSchema
-        }],
+    pokemonList: {
+        type: [pokemonSchema],
+        default: [],
         validate: [arrayLimit, "Exceeds the limit of 6 pokemon per team"]
     }
 });
