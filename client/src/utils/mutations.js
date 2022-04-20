@@ -24,8 +24,23 @@ export const ADD_USER = gql`
   }
 `;
 
-export const SAVE_POKEMON = gql`
-  mutation savePokemon ($pokemonData: PokemonInput!) {
+export const ADD_TEAM = gql`
+  mutation addTeam($pokemonData: PokemonInput!) {
+    savePokemon(pokemonData: $pokemonData) {
+    _id
+    name
+    type
+    savedPokemons {
+    height
+    origin
+    weakness
+    }
+    }
+  }
+`;
+
+export const ADD_POKEMON = gql`
+  mutation addPokemon ($pokemonData: PokemonInput!) {
     savePokemon(pokemonData: $pokemonData) {
     _id
     name
