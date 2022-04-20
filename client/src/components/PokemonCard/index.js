@@ -5,7 +5,7 @@ import "./index.css"
 const PokemonCard = ({pokemon}) => {
     const expression = /\d+/g;
     const [, dexNumber] = pokemon.url.match(expression);
-    console.log(dexNumber);
+    // console.log(dexNumber);
 
     return (
         // <div className="card g-3 m-2 round bg-light shadow border-0">
