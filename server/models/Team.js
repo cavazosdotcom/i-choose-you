@@ -2,9 +2,10 @@ const { Schema, model } = require('mongoose');
 const pokemonSchema = require('./Pokemon');
 
 const teamSchema = new Schema({
-    name: {
+    teamName: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     game: {
         type: String,
