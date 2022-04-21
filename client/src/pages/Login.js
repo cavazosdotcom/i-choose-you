@@ -61,7 +61,7 @@ const Login = (props) => {
                   <label className="form-label fs-5" htmlFor="form3Example1cg">UserName:</label>
                   <input 
                     type="text"
-                    name="name"
+                    name="email"
                     className="form-control form-control-lg shadow-sm" 
                     value={formState.name}
                     onChange={handleChange}
