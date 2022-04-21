@@ -14,15 +14,15 @@ function SearchForm({ onFormSubmit }) {
   };
 
   return (
-    <div className="search-bar ui segment">
+    <div className="search-bar ui segment text-center py-3">
       <form className="ui form" onSubmit={sendTerm}>
         <div className="field">
-          <label>search for pokemon</label>
+          <label></label>
           <input
             type="text"
             value={term}
             onChange={(e) => setTerm(e.target.value)}
-            placeholder="search..."
+            placeholder="Search..."
           />
         </div>
       </form>

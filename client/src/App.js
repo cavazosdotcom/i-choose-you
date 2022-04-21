@@ -50,7 +50,7 @@ function App() {
       <Router>
         <div className="flex-column justify-flex-start min-100-vh">
           <Header />
-          <div className="container">
+          <div className="container-lg">
             <Routes>
               <Route 
                 path="/"
@@ -73,7 +73,7 @@ function App() {
                 element={<Profile />}
               />
               <Route 
-                path="/team"
+                path="/team/:teamName"
                 element={<TeamBuilder />}
               />
             </Routes>

@@ -4,6 +4,7 @@ import PokemonList from "../components/Pokemon/PokemonList";
 import API from "../utils/API";
 import PokemonCard from "../components/PokemonCard";
 import axios from "axios";
+import { useParams } from "react-router";
 
 // First TeamBuilder Function, has a search so we can search for pokemon and retrieve data for that specific pokemon 
 
@@ -51,6 +52,10 @@ import axios from "axios";
 // building version with both fetches to retrieve on page load
 const TeamBuilder = () => {
     
+    const { teamName: userParam } = useParams();
+    
+    console.log(userParam)
+
     const [pokemon, setPokemon] = useState(null)
     // const [pokemonData, setPokemonData] = useState(null)
     const [isLoading, setLoading] = useState(true)
@@ -91,9 +96,12 @@ const TeamBuilder = () => {
     // console.log(pokemonData)
     
     return (
-        <div style={{display: "flex", flexWrap: "wrap"}}>
-        {(isLoading) ? <div>loading...</div> : pokemon.map(poke => <PokemonCard pokemon={poke.pokemon_species} />)}
-        </div>
+        <>
+            <SearchForm />
+            <div className="d-flex flex-wrap gap-4 justify-content-center">
+                {(isLoading) ? <div>loading...</div> : pokemon.map(poke => <PokemonCard key={poke.entry_number} pokemon={poke.pokemon_species} teamName={userParam} />)}
+            </div>
+        </>
         )
         
 }
