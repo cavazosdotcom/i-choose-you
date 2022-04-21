@@ -12,7 +12,7 @@ const resolvers = {
     },
     teamList: async (parent, args, context) => {
       if (context.user) {
-        const user = User.findOne({ _id: context.user._id });
+        const user = await User.findOne({ _id: context.user._id });
         return user.teamList;
       }
       throw new AuthenticationError('You need to be logged in!');
