@@ -4,8 +4,7 @@ const pokemonSchema = require('./Pokemon');
 const teamSchema = new Schema({
     teamName: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     game: {
         type: String,
