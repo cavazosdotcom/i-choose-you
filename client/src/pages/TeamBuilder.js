@@ -91,9 +91,12 @@ const TeamBuilder = () => {
     // console.log(pokemonData)
     
     return (
-        <div style={{display: "flex", flexWrap: "wrap"}}>
-        {(isLoading) ? <div>loading...</div> : pokemon.map(poke => <PokemonCard pokemon={poke.pokemon_species} />)}
-        </div>
+        <>
+            <SearchForm />
+            <div className="d-flex flex-wrap gap-4 justify-content-center">
+                {(isLoading) ? <div>loading...</div> : pokemon.map(poke => <PokemonCard key={poke.entry_number} pokemon={poke.pokemon_species} />)}
+            </div>
+        </>
         )
         
 }
