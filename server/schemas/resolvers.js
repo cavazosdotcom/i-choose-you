@@ -69,7 +69,7 @@ const resolvers = {
             if(team.pokemonList.length === 6){
               throw new ValidationError("Pokemon teams may have up to only 6 pokemon");
             }
-            team.pokemonList.push({pokeName: args.pokeName, typeList: args.typeList});
+            team.pokemonList.push({pokeName: args.pokeName, dexNumber: args.dexNumber, typeList: args.typeList});
           }
         })
         user.save();
