@@ -39,10 +39,13 @@ const Signup = () => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
+    <main className="flex-row justify-center mb-4 container">
+      <div className="row">
+
+        <div className="col-md-2 col-xs-0"></div>
+
+        <div className="col-md-8 col-xs-12">
+          <h4 className="text-dark p-2 text-center display-4 fw-bold">Become a Trainer!</h4>
           <div className="card-body">
             {data ? (
               <p>
@@ -50,39 +53,51 @@ const Signup = () => {
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
+              
               <form onSubmit={handleFormSubmit}>
-                <input
-                  className="form-input"
-                  placeholder="Your username"
-                  name="username"
-                  type="text"
-                  value={formState.name}
-                  onChange={handleChange}
-                />
-                <input
-                  className="form-input"
-                  placeholder="Your email"
-                  name="email"
-                  type="email"
-                  value={formState.email}
-                  onChange={handleChange}
-                />
-                <input
-                  className="form-input"
-                  placeholder="******"
-                  name="password"
-                  type="password"
-                  value={formState.password}
-                  onChange={handleChange}
-                />
-                <button
-                  className="btn btn-block btn-primary"
+                <div className="form-outline mb-4">
+                  <label className="form-label fs-5" htmlFor="form3Example1cg">UserName:</label>
+                  <input 
+                    type="text"
+                    name="name"
+                    className="form-control form-control-lg shadow-sm" 
+                    value={formState.name}
+                    onChange={handleChange}
+                  />
+                  
+                </div>
+                <div className="form-outline mb-4">
+                  <label className="form-label fs-5" htmlFor="form3Example3cg">Email:</label>
+                  <input 
+                    type="email" 
+                    name="email"
+                    className="form-control form-control-lg shadow-sm" 
+                    value={formState.email}
+                    onChange={handleChange}
+                  />
+                  
+                </div>
+                <div className="form-outline mb-4">
+                  <label className="form-label fs-5" htmlFor="form3Example4cg">Password:</label>
+                  <input 
+                    type="password"
+                    name="password"
+                    className="form-control form-control-lg shadow-sm" 
+                    value={formState.password}
+                    onChange={handleChange}
+                  />
+                  
+                </div>
+                <div className="d-flex justify-content-center">
+                  <button
+                  className="btn btn-block btn-dark bg-danger mt-2 shadow"
                   style={{ cursor: 'pointer' }}
                   type="submit"
-                >
-                  Submit
-                </button>
+                  >Start Training!</button>
+                </div>
+                <p className="text-center text-muted mt-5 mb-0">Have already an account? <a href="/login" className="fw-bold text-body"><u>Login here</u></a></p>
               </form>
+
             )}
 
             {error && (
@@ -92,6 +107,9 @@ const Signup = () => {
             )}
           </div>
         </div>
+
+        <div className="col-md-2 col-xs-0"></div>
+
       </div>
     </main>
   );
