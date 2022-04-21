@@ -19,3 +19,13 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const QUERY_TEAMS = gql`
+  query teamList {
+    teamList {
+      pokemonList {
+        pokeName
+      }
+    }
+  }
+`;
