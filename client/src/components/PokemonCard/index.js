@@ -25,7 +25,7 @@ const PokemonCard = ({pokemon, teamName}) => {
             <div className="d-inline-flex">
                 <div className="card-body bg-danger text-white text-center wide">
                     <p>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</p>
-                    <button className="btn btn-primary" onClick={() => addPokemon({variables: {teamName: teamName, pokeName:pokemon.name}})}>+</button>
+                    <button className="btn btn-primary" onClick={() => addPokemon({variables: {teamName: teamName, pokeName:pokemon.name, dexNumber: parseInt(dexNumber)}})}>+</button>
                 </div>
                 <div className="card-body p-0">
                     <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${dexNumber}.png`} className="wide" alt={`A small sprite of ${pokemon.name}`}/>
