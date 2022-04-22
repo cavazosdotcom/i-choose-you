@@ -5,6 +5,9 @@ import API from "../utils/API";
 import PokemonCard from "../components/PokemonCard";
 import axios from "axios";
 import { useParams } from "react-router";
+import TeamCard from "../components/TeamCard";
+import { useQuery } from "@apollo/client";
+import { QUERY_TEAMS } from "../utils/queries";
 
 // First TeamBuilder Function, has a search so we can search for pokemon and retrieve data for that specific pokemon 
 
@@ -51,13 +54,12 @@ import { useParams } from "react-router";
 
 // building version with both fetches to retrieve on page load
 const TeamBuilder = () => {
-    
+    const { data, loading } = useQuery(QUERY_TEAMS);
     const { teamName: userParam } = useParams();
     
     console.log(userParam)
 
     const [pokemon, setPokemon] = useState(null)
-    // const [pokemonData, setPokemonData] = useState(null)
     const [isLoading, setLoading] = useState(true)
    
 
@@ -75,6 +77,8 @@ const TeamBuilder = () => {
         }
         getPokemon();
     }, [])
+
+    const team = data?.teamList.find((team) => team.teamName === userParam);
 
     // accepts the result from getPokemon() 
     // const getPokemonData = async (resultPokemon) => {
@@ -97,6 +101,7 @@ const TeamBuilder = () => {
     
     return (
         <>
+            {loading ? <div>isLoading</div> : <TeamCard team={team}/>}
             <SearchForm />
             <div className="d-flex flex-wrap gap-4 justify-content-center">
                 {(isLoading) ? <div>loading...</div> : pokemon.map(poke => <PokemonCard key={poke.entry_number} pokemon={poke.pokemon_species} teamName={userParam} />)}
