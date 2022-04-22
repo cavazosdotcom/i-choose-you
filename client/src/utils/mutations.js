@@ -66,6 +66,7 @@ export const ADD_POKEMON = gql`
     teamList {
       pokemonList {
         pokeName
+        dexNumber
       }
     }
   }
