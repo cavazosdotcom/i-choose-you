@@ -52,7 +52,7 @@ const Home = () => {
         {getTeams.loading ? (
         <div>Loading...</div>
         ) : (
-        <ul>
+        <ul style={{listStyle: "none"}}>
           {userTeams.map((team) => {
             return <TeamCard key={team.teamName} team={team}/>
           })}
