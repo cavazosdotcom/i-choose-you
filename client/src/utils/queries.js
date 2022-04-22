@@ -26,6 +26,7 @@ export const QUERY_TEAMS = gql`
       teamName
       pokemonList {
         pokeName
+        dexNumber
       }
     }
   }

@@ -61,8 +61,8 @@ export const ADD_TEAM = gql`
 //   }
 // `;
 export const ADD_POKEMON = gql`
-  mutation AddPokemon($teamName: String!, $pokeName: String!) {
-  addPokemon(teamName: $teamName, pokeName: $pokeName) {
+  mutation AddPokemon($teamName: String!, $pokeName: String!, $dexNumber: Int!) {
+  addPokemon(teamName: $teamName, pokeName: $pokeName, dexNumber: $dexNumber) {
     teamList {
       pokemonList {
         pokeName
