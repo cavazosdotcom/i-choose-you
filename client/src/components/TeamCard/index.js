@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Home from '../../pages/Home';
 // import "./index.css"
 
-const TeamCard = ({ teams }) => {
+const TeamCard = ({ team }) => {
     /**
      * useQuery - Array of 6 pokemon objects `{imageUrl, name}`
      *  - listen for clicks for removal
@@ -22,8 +22,8 @@ const TeamCard = ({ teams }) => {
     return (
         <div>
             {/* <li>{teams.teamName} {teams.pokemonList[0]?.pokeName || []}</li> */}
-            <Link to={"team/"+ teams.teamName}>
-            <li>{teams.teamName} {teams.pokemonList.map((p) => p.pokeName)}</li>
+            <Link to={"team/"+ team.teamName}>
+            <li>{team.teamName} {team.pokemonList.map((p) => p.pokeName)}</li>
             </Link >
         </div>
         

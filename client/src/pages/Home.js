@@ -54,7 +54,7 @@ const Home = () => {
         ) : (
         <ul>
           {userTeams.map((team) => {
-            return <TeamCard key={team.teamName} teams={team}/>
+            return <TeamCard key={team.teamName} team={team}/>
           })}
         </ul>
         )}
