@@ -54,7 +54,7 @@ const Home = () => {
         ) : (
         <ul style={{listStyle: "none"}}>
           {userTeams.map((team) => {
-            return <TeamCard key={team.teamName} team={team}/>
+            return <li key={team.teamName}><TeamCard team={team}/></li>
           })}
         </ul>
         )}
