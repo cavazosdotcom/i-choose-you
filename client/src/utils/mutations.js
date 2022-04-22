@@ -24,34 +24,52 @@ export const ADD_USER = gql`
   }
 `;
 
+// export const ADD_TEAM = gql`
+//   mutation addTeam($pokemonData: PokemonInput!) {
+//     savePokemon(pokemonData: $pokemonData) {
+//     _id
+//     name
+//     type
+//     savedPokemons {
+//     height
+//     origin
+//     weakness
+//     }
+//     }
+//   }
+// `;
 export const ADD_TEAM = gql`
-  mutation addTeam($pokemonData: PokemonInput!) {
-    savePokemon(pokemonData: $pokemonData) {
+  mutation Mutation($teamName: String, $game: String) {
+  addTeam(teamName: $teamName, game: $game) {
     _id
-    name
-    type
-    savedPokemons {
-    height
-    origin
-    weakness
-    }
-    }
   }
+}
 `;
 
+// export const ADD_POKEMON = gql`
+//   mutation addPokemon ($pokemonData: PokemonInput!) {
+//     savePokemon(pokemonData: $pokemonData) {
+//     _id
+//     name
+//     type
+//     savedPokemons {
+//     height
+//     origin
+//     weakness
+//     }
+//     }
+//   }
+// `;
 export const ADD_POKEMON = gql`
-  mutation addPokemon ($pokemonData: PokemonInput!) {
-    savePokemon(pokemonData: $pokemonData) {
-    _id
-    name
-    type
-    savedPokemons {
-    height
-    origin
-    weakness
-    }
+  mutation AddPokemon($teamName: String!, $pokeName: String!) {
+  addPokemon(teamName: $teamName, pokeName: $pokeName) {
+    teamList {
+      pokemonList {
+        pokeName
+      }
     }
   }
+}
 `;
 
 export const REMOVE_POKEMON = gql`

@@ -12,7 +12,7 @@ const resolvers = {
     },
     teamList: async (parent, args, context) => {
       if (context.user) {
-        const user = User.findOne({ _id: context.user._id });
+        const user = await User.findOne({ _id: context.user._id });
         return user.teamList;
       }
       throw new AuthenticationError('You need to be logged in!');
@@ -69,7 +69,7 @@ const resolvers = {
             if(team.pokemonList.length === 6){
               throw new ValidationError("Pokemon teams may have up to only 6 pokemon");
             }
-            team.pokemonList.push({pokeName: args.pokeName, typeList: args.typeList});
+            team.pokemonList.push({pokeName: args.pokeName, dexNumber: args.dexNumber, typeList: args.typeList});
           }
         })
         user.save();

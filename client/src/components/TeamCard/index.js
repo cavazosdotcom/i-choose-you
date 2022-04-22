@@ -1,28 +1,30 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_TEAMS } from '../../utils/queries';
-import "./index.css"
+import { Link } from 'react-router-dom';
+import Home from '../../pages/Home';
+// import "./index.css"
 
-const TeamCard = () => {
+const TeamCard = ({ teams }) => {
     /**
      * useQuery - Array of 6 pokemon objects `{imageUrl, name}`
      *  - listen for clicks for removal
      */
-    const { loading, data } = useQuery(QUERY_TEAMS);
-
+    
+    // const team = console.log(getTeams)
     /**
      * Component 
      *  - large div, filled with 6 rounded images
      */
 
+    // console.log(teams)
+
     return (
         <div>
-            {loading ? (
-            <div>Loading...</div> 
-            ) : (
-            <div>
-
-            </div>)}
+            {/* <li>{teams.teamName} {teams.pokemonList[0]?.pokeName || []}</li> */}
+            <Link to={"team/"+ teams.teamName}>
+            <li>{teams.teamName} {teams.pokemonList.map((p) => p.pokeName)}</li>
+            </Link >
         </div>
         
     )

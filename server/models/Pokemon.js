@@ -16,6 +16,10 @@ const pokeSchema = new Schema({
         type: String,
         required: true
     },
+    dexNumber: {
+        type: Number,
+        required: true
+    },
     typeList: {
         type: [String],
         validate: [typeLimit, "Exceeds the limit of 2 types per pokemon"]

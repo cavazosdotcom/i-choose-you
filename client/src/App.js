@@ -73,7 +73,7 @@ function App() {
                 element={<Profile />}
               />
               <Route 
-                path="/team"
+                path="/team/:teamName"
                 element={<TeamBuilder />}
               />
             </Routes>
