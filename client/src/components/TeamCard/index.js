@@ -12,9 +12,9 @@ const TeamCard = ({ team }) => {
     return (
         <div>
             <Link to={"team/"+ team.teamName}><h3>{team.teamName}</h3></Link >
-                {team.pokemonList.map((p) => {
+                {team.pokemonList.map((p, index) => {
                     const imgSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.dexNumber}.png`;
-                    return <img src={imgSrc} className="wide" alt={`A small sprite of ${p.pokeName}`}/>
+                    return <img key={index} src={imgSrc} className="wide" alt={`A small sprite of ${p.pokeName}`}/>
                 })
             }
         </div>
