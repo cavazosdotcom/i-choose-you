@@ -1,64 +1,25 @@
 import React, { useEffect, useState } from "react";
 import SearchForm from "../components/SearchForm/index"
-import PokemonList from "../components/Pokemon/PokemonList";
 import API from "../utils/API";
 import PokemonCard from "../components/PokemonCard";
-import axios from "axios";
 import { useParams } from "react-router";
 import TeamCard from "../components/TeamCard";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { QUERY_TEAMS } from "../utils/queries";
-
-// First TeamBuilder Function, has a search so we can search for pokemon and retrieve data for that specific pokemon 
-
-// function  TeamBuilder() {
-
-//     // axios method, pokemon and loading data
-//     const [pokemon, setPokemon] = useState(null)
-//     const [isLoading, setLoading] = useState(true)
-
-//     // searchPokemon function, using axios, search pokemon based on query and return pokemon data
-//     // loading is false once data is fetched
-//     const searchPokemon = async (query) => {
-//         const res = await API.searchData(query)
-//         setPokemon(res.data)
-//         // setLoading(false)
-//     }
-
-//     // search for pikachu on page load 
-//     useEffect(() => {
-//         searchPokemon('pikachu')
-//     }, []);
-
-//     // sets loading to change when pokemon changes
-//     useEffect(() => {
-//         setLoading(!pokemon) 
-//       }, [pokemon])
-    
-//       console.log(pokemon)  
-
-
-//     // change loading to gif
-//     return (
-//         <>
-//         <SearchForm onFormSubmit={searchPokemon} />
-//         {(isLoading) ? <div>loading...</div> : <PokemonCard pokemon={pokemon}/>}
-        
-//     </>
-    
-//     );
-//     }
-
-// export default TeamBuilder;
-
+import { ADD_POKEMON } from "../utils/mutations";
 
 // building version with both fetches to retrieve on page load
 const TeamBuilder = () => {
     const { data, loading } = useQuery(QUERY_TEAMS);
     const { teamName: userParam } = useParams();
+    const [addPokemon, { error }] = useMutation(ADD_POKEMON, {
+        refetchQueries: [
+            QUERY_TEAMS,
+        ]
+    });
     
-    console.log(userParam)
 
+    const [team, setTeam] = useState({teamName: "Loading", pokemonList: []});
     const [pokemon, setPokemon] = useState(null)
     const [isLoading, setLoading] = useState(true)
    
@@ -69,45 +30,39 @@ const TeamBuilder = () => {
         const getPokemon = async () => {
             const res = await API.search("pokedex/kanto")
             // sets "pokemon" state to the response results
-            console.log(res.data);
             setPokemon(res.data.pokemon_entries)
-            
-            // need a different method to call fetch for each pokemon to retrieve data
-            // pokemon.map((p) => getPokemonData(p))
         }
         getPokemon();
     }, [])
 
-    const team = data?.teamList.find((team) => team.teamName === userParam);
-
-    // accepts the result from getPokemon() 
-    // const getPokemonData = async (resultPokemon) => {
-    //     // takes url from resultPokemon
-    //     let url = resultPokemon.url
-    //     // fetch with url
-    //     const res = await axios.get(url)
-
-    //     // update pokemonData state to recieved pokemon data, only works with one pokemon at a time at the moment, need to iterate over resultPokemon array
-    //     setPokemonData(res.data)
-    // }
-
+    useEffect(() => {
+        if(!loading && data){
+            const myTeam = data.teamList.find((team) => team.teamName === userParam);
+            console.log(myTeam)
+            setTeam(myTeam);
+        }
+    }, [loading, data, userParam])
 
     useEffect(() => {
         setLoading(!pokemon) 
     }, [pokemon])
 
-    console.log(pokemon)
-    // console.log(pokemonData)
+    function handleClick(vars){
+        addPokemon(vars);
+        if(error){
+            console.log(error);
+        }
+    }
     
     return (
         <>
-            {loading ? <div>isLoading</div> : <TeamCard team={team}/>}
+            {loading ? <div>loading</div> : <TeamCard team={team}/>}
             <SearchForm />
             <div className="d-flex flex-wrap gap-4 justify-content-center">
-                {(isLoading) ? <div>loading...</div> : pokemon.map(poke => <PokemonCard key={poke.entry_number} pokemon={poke.pokemon_species} teamName={userParam} />)}
+                {(isLoading) ? <div>loading...</div> : pokemon.map(poke => <PokemonCard key={poke.entry_number} pokemon={poke.pokemon_species} teamName={userParam} addPokemon={handleClick} />)}
             </div>
         </>
-        )
+    )
         
 }
 export default TeamBuilder;
