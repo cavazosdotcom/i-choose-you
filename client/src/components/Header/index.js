@@ -13,15 +13,15 @@ const Header = () => {
       <div className="container flex-row justify-space-between-lg justify-center align-center">
         <div>
           <Link className="text-light" to="/">
-            <h1 className="m-0">Tech Thoughts</h1>
+            <h1 className="m-0">I Choose You!!</h1>
           </Link>
-          <p className="m-0">Get into the mind of a programmer.</p>
+          <p className="m-0">Get into the mind of making your own team to battle with.</p>
         </div>
         <div>
           {Auth.loggedIn() ? (
             <>
-              <Link className="btn btn-lg btn-info m-2" to="/me">
-                {Auth.getProfile().data.username}'s profile
+              <Link className="btn btn-lg btn-info m-2" to="/manageTeams">
+                {Auth.getProfile().data.username}'s teams
               </Link>
               <button className="btn btn-lg btn-light m-2" onClick={logout}>
                 Logout
