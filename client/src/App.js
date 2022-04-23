@@ -16,6 +16,7 @@ import TeamBuilder from './pages/TeamBuilder';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
+import NotFound from './pages/NotFound';
 
 // import NavBar from './components/NavBar';
 
@@ -75,6 +76,10 @@ function App() {
               <Route 
                 path="/team/:teamName"
                 element={<TeamBuilder />}
+              />
+              <Route 
+                path="*"
+                element={<NotFound />}
               />
             </Routes>
           </div>

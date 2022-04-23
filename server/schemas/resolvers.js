@@ -25,10 +25,10 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     // if we decide to add any graphql search integration
-    searchPokemon: async (parent, args) => {
-      const res = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=20`)
-        return res.data
-    }
+    // searchPokemon: async (parent, args) => {
+    //   const res = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=20`)
+    //     return res.data
+    // }
   },
 
   Mutation: {
