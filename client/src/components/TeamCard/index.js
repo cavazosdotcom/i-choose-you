@@ -24,7 +24,6 @@ const TeamCard = ({ team }) => {
     async function handleTeamRemoval(teamName, event) {
         await removeTeam({variables: {
             teamName
-            // pokeName?
         }})
         window.location.reload();
     }
@@ -43,21 +42,31 @@ const TeamCard = ({ team }) => {
             setTeam(data.removePokemon.pokemonList);
         }
     }, [loading, data])
-
+    // TODO: Show 6 unown
+    // TODO: refactor images to bootstrap
+    // TODO: Add team with form submit AND on click
+    // TODO: Only delete on home page, not on team builder page
     return (
-        <div className="card d-flex">
+        <div className="card d-flex my-2">
             <div className="card-header d-flex justify-content-between">
                 <Link to={"/team/"+ teamName}><h3>{teamName}</h3></Link >
                 <button className='btn btn-outline-danger' style={{float: "right", margin: "2px"}} onClick={(e) => handleTeamRemoval(teamName, e)}>X</button>
             </div>
             <div className="card-body" style={{display: "flex"}}>
-                {currentTeam.map((p, index) => {
+                {console.log(currentTeam)}
+                { (currentTeam.length === 0) ?
+                (<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-question.png" alt="unown question mark form"></img>
+                ) : (
+                currentTeam.map((p, index) => {
                     const imgSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.dexNumber}.png`;
                     return (
                     <div key={index} style={{background: `no-repeat center url(${imgSrc})`, width: "128px", height: "128px"}}>
                         <button className='btn btn-outline-danger' style={{float: "right", margin: "2px"}} onClick={(e) => handleRemoval(teamName, p.pokeName, e)}>X</button>
                     </div>)
-                })}
+                })
+                )}
+                
+
             </div>
         </div>
         
