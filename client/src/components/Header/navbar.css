@@ -11,3 +11,11 @@
 .nav-bg {
     background-color: #FF0000;
 }
+
+.big-body {
+    height: 100vh;
+}
+
+.body-box {
+    height: 50vh;
+}

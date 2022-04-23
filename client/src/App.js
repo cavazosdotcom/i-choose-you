@@ -18,6 +18,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import NotFound from './pages/NotFound';
 
+import "./components/Header/navbar.css"
+
 // import NavBar from './components/NavBar';
 
 // Construct our main GraphQL API endpoint
@@ -49,9 +51,9 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="flex-column justify-flex-start min-100-vh">
+        <div className="d-flex flex-column justify-content-between min-vh-100 ">
           <Header />
-          <div className="container-lg">
+          <div className="body-box">
             <Routes>
               <Route 
                 path="/"
