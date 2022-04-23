@@ -90,7 +90,8 @@ const resolvers = {
           }
         })
         user.save();
-        return user.toJSON();
+        const team = user.teamList.find((team) => team.teamName === args.teamName);
+        return team;
       }
       throw new AuthenticationError('You need to be logged in!');  
     },
