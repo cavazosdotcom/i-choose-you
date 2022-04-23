@@ -4,17 +4,18 @@ const pokemonSchema = require('./Pokemon');
 const teamSchema = new Schema({
     teamName: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     game: {
         type: String,
+        default: "red-blue",
         required: true
     },
-    pokemonList: [{
-        type: pokemonSchema,
+    pokemonList: {
+        type: [pokemonSchema],
+        default: [],
         validate: [arrayLimit, "Exceeds the limit of 6 pokemon per team"]
-    }]
+    }
 });
 
 function arrayLimit(array){

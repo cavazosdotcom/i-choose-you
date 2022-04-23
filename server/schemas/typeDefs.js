@@ -8,6 +8,7 @@ const typeDefs = gql`
 
   type Pokemon {
     pokeName: String
+    dexNumber: Int
     typeList: [String]
     moves: [Move]
   }
@@ -20,6 +21,7 @@ const typeDefs = gql`
 
   input PokeInput {
     pokeName: String!
+    dexNumber: Int!
     typeList: [String]
   }
 
@@ -47,8 +49,9 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     addTeam(teamName: String, game: String, pokemonList: [PokeInput]): User
-    addPokemon(teamName: String!, pokeName: String!, typeList: [String]): User
-    removePokemon(teamName: String!, pokeName: String!): User
+    addPokemon(teamName: String!, pokeName: String!, dexNumber: Int!, typeList: [String]): User
+    removeTeam(teamName: String!): User
+    removePokemon(teamName: String!, pokeName: String!): Team
     login(email: String!, password: String!): Auth
   }
 `;
