@@ -47,8 +47,14 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     addTeam(teamName: String, game: String, pokemonList: [PokeInput]): User
+<<<<<<< Updated upstream
     addPokemon(teamName: String!, pokeName: String!, typeList: [String]): User
     removePokemon(teamName: String!, pokeName: String!): User
+=======
+    addPokemon(teamName: String!, pokeName: String!, dexNumber: Int!, typeList: [String]): User
+    removeTeam(teamName: String!): User
+    removePokemon(teamName: String!, pokeName: String!): Team
+>>>>>>> Stashed changes
     login(email: String!, password: String!): Auth
   }
 `;
