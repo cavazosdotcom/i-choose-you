@@ -74,16 +74,13 @@ export const ADD_POKEMON = gql`
 `;
 
 export const REMOVE_POKEMON = gql`
-  mutation removePokemon ($pokemonData: PokemonInput!) {
-    removePokemon(pokemonData: $pokemonData) {
-    _id
-    name
-    type
-    savedPokemons {
-    height
-    origin
-    weakness
-    }
+  mutation removePokemon($teamName: String!, $pokeName: String!) {
+    removePokemon(teamName: $teamName, pokeName: $pokeName) {
+      teamName
+      pokemonList {
+        pokeName
+        dexNumber
+      }
     }
   }
 `;
