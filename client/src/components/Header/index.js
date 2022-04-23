@@ -36,7 +36,7 @@ const Header = () => {
                 {Auth.loggedIn() ? (
                   <>
                     <li>
-                      <Link className="btn btn-lg btn-info m-2" to="/manageTeams">
+                      <Link className="btn btn-lg btn-info m-2" to="/">
                         {Auth.getProfile().data.username}'s teams
                       </Link>
                     </li>
@@ -65,9 +65,6 @@ const Header = () => {
             </li>
           </ul>
         </div>
-
-
-        
       </div>
     </header>
   );
