@@ -98,7 +98,8 @@ const resolvers = {
     removeTeam: async (parent, args, context) => {
       if(context.user) {
         const user = await User.findOne({_id: context.user._id});
-        const i = user.teamList.findIndex((team) => team === args.teamName);
+        // console.log(user.teamList)
+        const i = user.teamList.findIndex((team) => team.teamName === args.teamName);
         if(i === -1){
           throw new ValidationError(`No team found with name ${args.teamName}`);
         }

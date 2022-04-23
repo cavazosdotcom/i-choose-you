@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { REMOVE_POKEMON } from '../../utils/mutations';
+import { REMOVE_POKEMON, REMOVE_TEAM } from '../../utils/mutations';
 import { QUERY_TEAMS } from '../../utils/queries';
 // import "./index.css"
 
@@ -11,13 +11,22 @@ const TeamCard = ({ team }) => {
     const teamName = team.teamName;
 
     const [removePokemon, {data, loading}] = useMutation(REMOVE_POKEMON);
-    
+    const [removeTeam, {teamData, teamLoading}] = useMutation(REMOVE_TEAM)
+
     async function handleRemoval(teamName, pokeName, event){
         await removePokemon({variables: {
             pokeName,
             teamName
         }});
         // event.target.parentElement.style.display = "none";
+    }
+
+    async function handleTeamRemoval(teamName, event) {
+        await removeTeam({variables: {
+            teamName
+            // pokeName?
+        }})
+        window.location.reload();
     }
     /**
      * Component 
@@ -36,15 +45,18 @@ const TeamCard = ({ team }) => {
     }, [loading, data])
 
     return (
-        <div>
-            <Link to={"/team/"+ teamName}><h3>{teamName}</h3></Link >
-            <div style={{display: "flex"}}>
+        <div className="card d-flex">
+            <div className="card-header d-flex justify-content-between">
+                <Link to={"/team/"+ teamName}><h3>{teamName}</h3></Link >
+                <button className='btn btn-outline-danger' style={{float: "right", margin: "2px"}} onClick={(e) => handleTeamRemoval(teamName, e)}>X</button>
+            </div>
+            <div className="card-body" style={{display: "flex"}}>
                 {currentTeam.map((p, index) => {
                     const imgSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.dexNumber}.png`;
                     return (
                     <div key={index} style={{background: `no-repeat center url(${imgSrc})`, width: "128px", height: "128px"}}>
                         <button className='btn btn-outline-danger' style={{float: "right", margin: "2px"}} onClick={(e) => handleRemoval(teamName, p.pokeName, e)}>X</button>
-                    </div> )
+                    </div>)
                 })}
             </div>
         </div>

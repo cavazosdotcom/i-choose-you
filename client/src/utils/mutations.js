@@ -46,6 +46,20 @@ export const ADD_TEAM = gql`
 }
 `;
 
+
+export const REMOVE_TEAM = gql`
+  mutation Mutation($teamName: String!) {
+  removeTeam(teamName: $teamName) {
+    teamList {
+      teamName
+      pokemonList {
+        pokeName
+        dexNumber
+      }
+    }
+  }
+}
+`;
 // export const ADD_POKEMON = gql`
 //   mutation addPokemon ($pokemonData: PokemonInput!) {
 //     savePokemon(pokemonData: $pokemonData) {
