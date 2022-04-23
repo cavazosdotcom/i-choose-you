@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { REMOVE_POKEMON, REMOVE_TEAM } from '../../utils/mutations';
 import { QUERY_TEAMS } from '../../utils/queries';
-// import "./index.css"
+//import "./index.css"
 
 const TeamCard = ({ team }) => {
     console.log(team["pokemonList"]);
