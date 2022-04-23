@@ -61,11 +61,12 @@ export const ADD_TEAM = gql`
 //   }
 // `;
 export const ADD_POKEMON = gql`
-  mutation AddPokemon($teamName: String!, $pokeName: String!) {
-  addPokemon(teamName: $teamName, pokeName: $pokeName) {
+  mutation AddPokemon($teamName: String!, $pokeName: String!, $dexNumber: Int!) {
+  addPokemon(teamName: $teamName, pokeName: $pokeName, dexNumber: $dexNumber) {
     teamList {
       pokemonList {
         pokeName
+        dexNumber
       }
     }
   }
@@ -73,16 +74,13 @@ export const ADD_POKEMON = gql`
 `;
 
 export const REMOVE_POKEMON = gql`
-  mutation removePokemon ($pokemonData: PokemonInput!) {
-    removePokemon(pokemonData: $pokemonData) {
-    _id
-    name
-    type
-    savedPokemons {
-    height
-    origin
-    weakness
-    }
+  mutation removePokemon($teamName: String!, $pokeName: String!) {
+    removePokemon(teamName: $teamName, pokeName: $pokeName) {
+      teamName
+      pokemonList {
+        pokeName
+        dexNumber
+      }
     }
   }
 `;
