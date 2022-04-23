@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap'
 
 // TODO: edit strict mode so api doesn't call twice
 ReactDOM.render(

@@ -58,7 +58,7 @@ const Login = (props) => {
               
               <form onSubmit={handleFormSubmit}>
                 <div className="form-outline mb-4">
-                  <label className="form-label fs-5" htmlFor="form3Example1cg">UserName:</label>
+                  <label className="form-label fs-5" htmlFor="form3Example1cg">Email:</label>
                   <input 
                     type="text"
                     name="email"

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import SearchForm from "../components/SearchForm/index"
 import API from "../utils/API";
+import AuthService from "../utils/auth"
 import PokemonCard from "../components/PokemonCard";
 import { useParams } from "react-router";
 import TeamCard from "../components/TeamCard";
@@ -10,6 +12,7 @@ import { ADD_POKEMON } from "../utils/mutations";
 
 // building version with both fetches to retrieve on page load
 const TeamBuilder = () => {
+    const navigate = useNavigate();
     const { data, loading } = useQuery(QUERY_TEAMS);
     const { teamName: userParam } = useParams();
     const [addPokemon, { error }] = useMutation(ADD_POKEMON, {
@@ -26,6 +29,9 @@ const TeamBuilder = () => {
 
     // update to run getPokemonData with useState
     useEffect(() => {
+        if(!AuthService.loggedIn()){
+            navigate("/login");
+        }
         // calls pokemon fetch "search" method from API folder,
         const getPokemon = async () => {
             const res = await API.search("pokedex/kanto")
