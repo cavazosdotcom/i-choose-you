@@ -25,7 +25,7 @@ const TeamBuilder = () => {
     const [team, setTeam] = useState({teamName: "Loading", pokemonList: []});
     const [pokemon, setPokemon] = useState(null)
     const [isLoading, setLoading] = useState(true)
-   const [searchTerm, setSearchTerm] = useState("")
+    const [searchTerm, setSearchTerm] = useState("")
 
     // update to run getPokemonData with useState
     useEffect(() => {
@@ -79,7 +79,7 @@ const TeamBuilder = () => {
                     } else if (val.pokemon_species.name.toLowerCase().includes(searchTerm.toLowerCase())) {
                         return val
                     }
-                }).map(poke => <PokemonCard key={poke.entry_number} pokemon={poke.pokemon_species} teamName={userParam} addPokemon={handleClick} />)}
+                }).map(poke => <PokemonCard key={poke.entry_number} pokemon={poke.pokemon_species} teamName={userParam} addPokemon={handleClick}/>)}
             </div>
         </>
     )
