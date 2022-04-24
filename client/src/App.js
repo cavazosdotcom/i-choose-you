@@ -52,7 +52,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         {/* removed justify-content-around */}
-        <div className="d-flex flex-column min-vh-100 ">
+        <div className="d-flex flex-column min-vh-100 bg-light">
           <Header />
           <div className="container-lg">
             <Routes>

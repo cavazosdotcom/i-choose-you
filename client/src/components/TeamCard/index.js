@@ -52,7 +52,7 @@ const TeamCard = ({ team }) => {
     return (
         <div className="card row shadow m-3">
             <div className="card-header d-flex justify-content-between bg-primary">
-                <Link to={"/team/"+ teamName}><h3 className="text-white">{teamName}</h3></Link >
+                <Link to={"/team/" + teamName} className="text-decoration-none"><h3 className="text-white m-0">{teamName}</h3></Link >
                 <button className='btn btn-outline-danger' onClick={(e) => handleTeamRemoval(teamName, e)}>X</button>
             </div>
             <div className="card-body bg-light d-flex justify-content-start flex-wrap p-0">
