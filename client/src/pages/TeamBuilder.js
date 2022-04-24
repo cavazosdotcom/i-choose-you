@@ -25,7 +25,7 @@ const TeamBuilder = () => {
     const [team, setTeam] = useState({teamName: "Loading", pokemonList: []});
     const [pokemon, setPokemon] = useState(null)
     const [isLoading, setLoading] = useState(true)
-   
+    const [searchTerm, setSearchTerm] = useState("")
 
     // update to run getPokemonData with useState
     useEffect(() => {
@@ -63,9 +63,23 @@ const TeamBuilder = () => {
     return (
         <>
             {loading ? <div>loading</div> : <TeamCard team={team}/>}
-            <SearchForm />
+            {/* <SearchForm /> */}
+            <input
+            className="d-flex mx-auto my-3"
+            type="text"
+            placeholder="Search..."
+            onChange={(event) => {
+                setSearchTerm(event.target.value);
+            }}
+            />
             <div className="d-flex flex-wrap gap-4 justify-content-center">
-                {(isLoading) ? <div>loading...</div> : pokemon.map(poke => <PokemonCard key={poke.entry_number} pokemon={poke.pokemon_species} teamName={userParam} addPokemon={handleClick} />)}
+                {(isLoading) ? <div>loading...</div> : pokemon.filter((val) => {
+                    if (searchTerm === "") {
+                        return val
+                    } else if (val.pokemon_species.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                        return val
+                    }
+                }).map(poke => <PokemonCard key={poke.entry_number} pokemon={poke.pokemon_species} teamName={userParam} addPokemon={handleClick}/>)}
             </div>
         </>
     )
