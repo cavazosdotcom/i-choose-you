@@ -65,7 +65,7 @@ const TeamBuilder = () => {
             {loading ? <div>loading</div> : <TeamCard team={team}/>}
             {/* <SearchForm /> */}
             <input
-            className="d-flex mx-auto my-3"
+            className="d-flex mx-auto my-4"
             type="text"
             placeholder="Search..."
             onChange={(event) => {

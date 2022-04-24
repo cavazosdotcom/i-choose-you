@@ -51,9 +51,10 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="d-flex flex-column justify-content-between min-vh-100 ">
+        {/* removed justify-content-around */}
+        <div className="d-flex flex-column min-vh-100 ">
           <Header />
-          <div className="body-box">
+          <div className="container-lg">
             <Routes>
               <Route 
                 path="/"
@@ -85,7 +86,7 @@ function App() {
               />
             </Routes>
           </div>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </Router>
     </ApolloProvider>
