@@ -74,7 +74,7 @@ const TeamBuilder = () => {
                 }}>
             </input>
             </div>
-            <div className="d-flex flex-wrap gap-4 justify-content-center">
+            <div className="d-flex flex-wrap gap-3 justify-content-center">
                 {(isLoading) ? <div>loading...</div> : pokemon.filter((val) => {
                     if (searchTerm === "") {
                         return val
