@@ -64,14 +64,16 @@ const TeamBuilder = () => {
         <>
             {loading ? <div>loading</div> : <TeamCard team={team}/>}
             {/* <SearchForm /> */}
+            <div className="input-group mb-3">
             <input
-            className="d-flex mx-auto my-3"
-            type="text"
-            placeholder="Search..."
-            onChange={(event) => {
-                setSearchTerm(event.target.value);
-            }}
-            />
+                className="d-flex mx-auto my-4 p-2 w-75 fs-4"
+                type="text"
+                placeholder="Search..."
+                onChange={(event) => {
+                    setSearchTerm(event.target.value);
+                }}>
+            </input>
+            </div>
             <div className="d-flex flex-wrap gap-4 justify-content-center">
                 {(isLoading) ? <div>loading...</div> : pokemon.filter((val) => {
                     if (searchTerm === "") {

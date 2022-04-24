@@ -81,7 +81,7 @@ const Home = () => {
               {getTeams.loading ? (
               <div>Loading...</div>
               ) : (
-              <ul style={{listStyle: "none"}}>
+              <ul className="p-0 list-unstyled">
                 {userTeams.map((team) => {
                   return <li key={team.teamName}><TeamCard team={team}/></li>
                 })}
