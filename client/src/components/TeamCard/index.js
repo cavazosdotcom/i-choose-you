@@ -52,7 +52,6 @@ const TeamCard = ({ team }) => {
                 </div>
             </div>
             <div className="card-body round-body d-flex justify-content-start flex-wrap p-0">
-                {console.log(currentTeam)}
                 { (currentTeam.length === 0) ?
 
                 (<Link to={`/team/${teamName}`}><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-question.png" alt="unown question mark form"></img></Link>) : (

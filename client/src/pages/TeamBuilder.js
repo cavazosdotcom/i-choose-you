@@ -43,7 +43,6 @@ const TeamBuilder = () => {
     useEffect(() => {
         if(!loading && data){
             const myTeam = data.teamList.find((team) => team.teamName === userParam);
-            console.log(myTeam)
             setTeam(myTeam);
         }
     }, [loading, data, userParam])
