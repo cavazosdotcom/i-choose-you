@@ -61,14 +61,13 @@ const Home = () => {
 
           {Auth.loggedIn() ? (
             <>
-              <form className="input-group mb-3">
+              <form className="input-group mb-3" onSubmit={handleSearch}>
                 <input 
                   type="text" 
                   className="form-control" 
                   placeholder="Team Name" 
                   aria-label="Team Name" 
                   aria-describedby="button-addon2" 
-                  onSubmit={handleSearch}
                   onChange={(e) => setInputValue(e.target.value)}/>
                 {/* </input> */}
                 <button 
