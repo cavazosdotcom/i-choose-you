@@ -10,34 +10,20 @@ import Footer from "../components/Footer";
 
 
 const Home = () => {
-// const [name, setName] = useState('');
-// const pokemon = [{name:'John', image:ImageOne, description: "johns image"}, {name:'Bob', image:ImageTwo, description: "Bibs image"}, {name:'Chris', image:ImageThree, description: "  chris image"} ]
+
   const navigate = useNavigate();
 
   const [addTeam, { error }] = useMutation(ADD_TEAM)
 
   const getTeams = useQuery(QUERY_TEAMS)
 
-
   const userTeams = getTeams.data?.teamList || [];
-  console.log(userTeams)
 
   const [inputValue, setInputValue] = useState('')
-  // const [teams, setTeams] = useState([])
-  // const [isLoading, setLoading] = useState(true)
-  
-  // setTeams([...userTeams]);
-  
-  // useEffect(() => {
-  //   if(!Auth.loggedIn()){
-  //     navigate("/login")
-  //   }
-  // }, [])
 
   function handleSearch(e) {
     e.preventDefault();
     // here you can get the inputValue
-    // console.log(inputValue)
     addTeam({variables: {game: "game", teamName: inputValue}})
     window.location.reload();
   }
@@ -46,19 +32,10 @@ const Home = () => {
     event.preventDefault();
     Auth.logout();
   };
-  
-  
 
-//   useEffect(() => {
-//     setLoading(!userTeams) 
-// }, [userTeams])
-
-// TODO: edit onClick for add button to form submit when adding a team
   return (
     <main className="h-100">
       <div className="flex-row justify-center text-center h-100">
-
-
           {Auth.loggedIn() ? (
             <>
               <form className="input-group mb-3" onSubmit={handleSearch}>
@@ -69,7 +46,6 @@ const Home = () => {
                   aria-label="Team Name" 
                   aria-describedby="button-addon2" 
                   onChange={(e) => setInputValue(e.target.value)}/>
-                {/* </input> */}
                 <button 
                   className="btn btn-outline-secondary" 
                   type="button" 

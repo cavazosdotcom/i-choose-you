@@ -20,8 +20,6 @@ import NotFound from './pages/NotFound';
 
 import "./components/Header/navbar.css"
 
-// import NavBar from './components/NavBar';
-
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',

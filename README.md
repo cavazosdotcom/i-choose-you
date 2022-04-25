@@ -6,13 +6,15 @@
 
 * [Description](#description)
 
-* [User Story](#userstory)
+* [User Story](#user-story)
+
+* [Acceptance Criteria](#acceptance-criteria)
 
 * [Technologies](#technologies)
 
-* [Tests](#tests)
+* [Questions and Contributors](#questions-and-contributors)
 
-* [Questions](#questions)
+* [Future Development](#future-development)
 
 ## Links
 
@@ -77,7 +79,7 @@ THEN I click the delete button on that team's card
 * Javascript
 * GraphQL
 
-## Questions/Contributors
+## Questions and Contributors
 
 * [Cameron Seibel](https://github.com/CameronMSeibel)
 
@@ -105,4 +107,4 @@ As of now we have a few plans to further bolster this application.
 
 * Adding a Type Inquiry to inquire and evaluate a teams weaknesses by types
 
-* Recommending possible pokemon to add to a team based on a team's weakness to specific types 
+* Recommending possible pokemon to add to a team based on a team's weakness to specific types n to add to a team based on a team's weakness to specific types 
