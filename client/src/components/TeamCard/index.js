@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { REMOVE_POKEMON, REMOVE_TEAM } from '../../utils/mutations';
 import { QUERY_TEAMS } from '../../utils/queries';
 import redX from "./img/red-x.png"
@@ -9,6 +9,7 @@ import redX from "./img/red-x.png"
 const TeamCard = ({ team }) => {
     console.log(team["pokemonList"]);
     const [currentTeam, setTeam] = useState(team.pokemonList);
+    const navigate = useNavigate();
     const teamName = team.teamName;
 
     const [removePokemon, {data, loading}] = useMutation(REMOVE_POKEMON);
@@ -26,6 +27,7 @@ const TeamCard = ({ team }) => {
         await removeTeam({variables: {
             teamName
         }})
+        navigate("/", {replace: true})
         window.location.reload();
     }
     /**
@@ -51,13 +53,16 @@ const TeamCard = ({ team }) => {
         <div className="card round-card row shadow m-3">
             <div className="card-header round-header d-flex justify-content-between bg-primary align-items-center">
                 <Link to={"/team/" + teamName} className="text-decoration-none"><h3 className="text-white m-0">{teamName}</h3></Link >
-                <button className='btn btn-outline-danger' onClick={(e) => handleTeamRemoval(teamName, e)}>X</button>
+                <div>
+                    <Link to={`/team/${teamName}`}><button className='btn btn-secondary'>Edit</button></Link>
+                    <button style={{marginLeft: "5px"}} className='btn btn-danger' onClick={(e) => handleTeamRemoval(teamName, e)}>X</button>
+                </div>
             </div>
             <div className="card-body round-body d-flex justify-content-start flex-wrap p-0">
                 {console.log(currentTeam)}
                 { (currentTeam.length === 0) ?
 
-                (<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-question.png" alt="unown question mark form"></img>) : (
+                (<Link to={`/team/${teamName}`}><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-question.png" alt="unown question mark form"></img></Link>) : (
                 currentTeam.map((p, index) => {
                     const imgSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.dexNumber}.png`;
                     return (
