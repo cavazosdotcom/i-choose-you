@@ -49,18 +49,16 @@ const TeamCard = ({ team }) => {
     // TODO: refactor images to bootstrap
     // TODO: Add team with form submit AND on click
     // TODO: Only delete on home page, not on team builder page
-    // style={{float: "right", margin: "2px"}}
-    // style={{background: `no-repeat center url(${imgSrc})`, width: "128px", height: "128px"}}
     return (
-        <div className="card row shadow m-3">
-            <div className="card-header d-flex justify-content-between bg-primary">
+        <div className="card round-card row shadow m-3">
+            <div className="card-header round-header d-flex justify-content-between bg-primary align-items-center">
                 <Link to={"/team/" + teamName} className="text-decoration-none"><h3 className="text-white m-0">{teamName}</h3></Link >
                 <div>
                     <Link to={`/team/${teamName}`}><button className='btn btn-secondary'>Edit</button></Link>
                     <button style={{marginLeft: "5px"}} className='btn btn-danger' onClick={(e) => handleTeamRemoval(teamName, e)}>X</button>
                 </div>
             </div>
-            <div className="card-body bg-light d-flex justify-content-start flex-wrap p-0">
+            <div className="card-body round-body d-flex justify-content-start flex-wrap p-0">
                 {console.log(currentTeam)}
                 { (currentTeam.length === 0) ?
 

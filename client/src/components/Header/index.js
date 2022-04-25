@@ -18,29 +18,30 @@ const Header = () => {
             type="button" 
             id="dropdownMenuButton1" 
             data-bs-toggle="dropdown" 
-            aria-expanded="false" 
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pok%C3%A9_Ball_icon.svg/1026px-Pok%C3%A9_Ball_icon.svg.png">
+            // aria-expanded="false" 
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pok%C3%A9_Ball_icon.svg/1026px-Pok%C3%A9_Ball_icon.svg.png"
+            alt="pokeball">
           </img>
           <ul className="dropdown-menu nav-drop text-center" aria-labelledby="dropdownMenuButton1">
-            <li>
+            {/* <li>
                     <Link className="btn btn-lg btn-info m-2" to="/">
                       Home
                     </Link>
-            </li>
+            </li> */}
                 {Auth.loggedIn() ? (
                   <>
                     <li>
-                      <Link className="btn btn-lg btn-info m-2" to="/">
+                      <Link className="btn btn-lg btn-primary m-2" to="/">
                         {Auth.getProfile().data.username}'s teams
                       </Link>
                     </li>
                   </>
                 ) : (
                   <>
-                    <Link className="btn btn-lg btn-info m-2" to="/login">
+                    <Link className="btn btn-lg btn-primary m-2" to="/login">
                       Login
                     </Link>
-                    <Link className="btn btn-lg btn-light m-2" to="/signup">
+                    <Link className="btn btn-lg btn-warning m-2" to="/signup">
                       Signup
                     </Link>
                   </>
@@ -48,7 +49,7 @@ const Header = () => {
             <li>
             {Auth.loggedIn() ? (
                   <li>
-                    <button className="btn btn-lg btn-light m-2" onClick={logout}>
+                    <button className="btn btn-lg btn-danger m-2" onClick={logout}>
                         Logout
                       </button>
                   </li>
