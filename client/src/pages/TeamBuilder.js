@@ -20,7 +20,6 @@ const TeamBuilder = () => {
             QUERY_TEAMS,
         ]
     });
-    
 
     const [team, setTeam] = useState({teamName: "Loading", pokemonList: []});
     const [pokemon, setPokemon] = useState(null)
@@ -44,7 +43,6 @@ const TeamBuilder = () => {
     useEffect(() => {
         if(!loading && data){
             const myTeam = data.teamList.find((team) => team.teamName === userParam);
-            console.log(myTeam)
             setTeam(myTeam);
         }
     }, [loading, data, userParam])
@@ -63,7 +61,6 @@ const TeamBuilder = () => {
     return (
         <>
             {loading ? <div>loading</div> : <TeamCard team={team}/>}
-            {/* <SearchForm /> */}
             <div className="input-group mb-3">
             <input
                 className="d-flex mx-auto my-4 p-2 w-75 fs-4"

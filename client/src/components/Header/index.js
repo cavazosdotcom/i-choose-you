@@ -18,16 +18,10 @@ const Header = () => {
             type="button" 
             id="dropdownMenuButton1" 
             data-bs-toggle="dropdown" 
-            // aria-expanded="false" 
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pok%C3%A9_Ball_icon.svg/1026px-Pok%C3%A9_Ball_icon.svg.png"
             alt="pokeball">
           </img>
           <ul className="dropdown-menu nav-drop text-center" aria-labelledby="dropdownMenuButton1">
-            {/* <li>
-                    <Link className="btn btn-lg btn-info m-2" to="/">
-                      Home
-                    </Link>
-            </li> */}
                 {Auth.loggedIn() ? (
                   <>
                     <li>

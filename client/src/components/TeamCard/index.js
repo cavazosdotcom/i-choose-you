@@ -4,10 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { REMOVE_POKEMON, REMOVE_TEAM } from '../../utils/mutations';
 import { QUERY_TEAMS } from '../../utils/queries';
 import redX from "./img/red-x.png"
-//import "./index.css"
 
 const TeamCard = ({ team }) => {
-    console.log(team["pokemonList"]);
+
     const [currentTeam, setTeam] = useState(team.pokemonList);
     const navigate = useNavigate();
     const teamName = team.teamName;
@@ -20,7 +19,6 @@ const TeamCard = ({ team }) => {
             pokeName,
             teamName
         }});
-        // event.target.parentElement.style.display = "none";
     }
 
     async function handleTeamRemoval(teamName, event) {
@@ -34,21 +32,16 @@ const TeamCard = ({ team }) => {
      * Component 
      *  - large div, filled with 6 rounded images
      */
-    console.log(currentTeam);
     useEffect(() => {
         setTeam(team.pokemonList)
     }, [team.pokemonList])
 
     useEffect(() => {
         if(!loading && data){
-            console.log(data);
             setTeam(data.removePokemon.pokemonList);
         }
     }, [loading, data])
-    // TODO: Show 6 unown
-    // TODO: refactor images to bootstrap
-    // TODO: Add team with form submit AND on click
-    // TODO: Only delete on home page, not on team builder page
+
     return (
         <div className="card round-card row shadow m-3">
             <div className="card-header round-header d-flex justify-content-between bg-primary align-items-center">
@@ -59,7 +52,6 @@ const TeamCard = ({ team }) => {
                 </div>
             </div>
             <div className="card-body round-body d-flex justify-content-start flex-wrap p-0">
-                {console.log(currentTeam)}
                 { (currentTeam.length === 0) ?
 
                 (<Link to={`/team/${teamName}`}><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-question.png" alt="unown question mark form"></img></Link>) : (
@@ -69,13 +61,9 @@ const TeamCard = ({ team }) => {
                     <div key={index} className="d-flex col-sm-2 col-4 d-flex justify-content-center align-center py-1 img-con">
                         <img src={imgSrc} alt="pokemon sprite" className="image-shake imageTwo" onClick={(e) => handleRemoval(teamName, p.pokeName, e)}></img>
                         <img src={redX} className="redX image imageOne hide" alt="red x"></img>
-                        {/* <div className="image-overlay justify-content-center">
-                            <p className='image-button'>X</p>
-                        </div> */}
                     </div>)
                 })
                 )}
-                
 
             </div>
         </div>

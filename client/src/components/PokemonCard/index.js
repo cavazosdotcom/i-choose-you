@@ -5,7 +5,6 @@ const PokemonCard = ({pokemon, teamName, addPokemon}) => {
     const expression = /\d+/g;
     const [, dexNumber] = pokemon.url.match(expression);
 
-    // TODO:
     return (
         <>
         <div className="card p-round-card border-3 border-dark shadow" id={dexNumber}>
