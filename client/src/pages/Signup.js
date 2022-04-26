@@ -97,7 +97,7 @@ const Signup = () => {
                   type="submit"
                   >Start Training!</button>
                 </div>
-                <p className="text-center text-muted mt-5 mb-0">Have already an account? <a href="/login" className="fw-bold text-body"><u>Login here</u></a></p>
+                <p className="text-center text-muted mt-5 mb-0">Have already an account? <Link to="/login" className="fw-bold text-body">Login Here</Link></p>
               </form>
 
             )}
